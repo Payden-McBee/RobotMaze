@@ -76,7 +76,7 @@ void turnBigRight()
 	TA0CCTL0 |= OUTMOD_7;		 // set TACCTL0 to Reset/Set
 
 	TA1CCTL1 |= OUTMOD_7; //reset/set
-	__delay_cycles(300000);
+	__delay_cycles(280000);
 	clearModes();
 }
 
@@ -102,18 +102,18 @@ void turnBigLeft()
 	TA1CCTL0 |= OUTMOD_7;		 // set TACCTL0 to Reset
 
 	TA0CCTL1 |= OUTMOD_7;
-	__delay_cycles(300000);
+	__delay_cycles(280000);
 	clearModes();
 }
 
 void moveForward()
 {
 	clearModes();
-	TA0CCR1 = 50;
-	TA1CCR1 = 50;
+	TA0CCR1 = 30;
+	TA1CCR1 = 30;
 	TA1CCTL1 |= OUTMOD_7; //reset/set
 	TA0CCTL1 |= OUTMOD_7; //reset/set
-	__delay_cycles(900000);
+	__delay_cycles(400000);
 	clearModes();
 }
 
@@ -128,6 +128,12 @@ void moveBackward()
 	TA0CCTL0 |= OUTMOD_7;		 // set TACCTL0 to Reset/Set
 	__delay_cycles(500000);
 	clearModes();
+}
+
+void turnAround()
+{
+	turnBigLeft();
+	turnBigLeft();
 }
 //functions
 
