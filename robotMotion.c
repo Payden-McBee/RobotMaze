@@ -109,8 +109,8 @@ void turnBigLeft()
 void moveForward()
 {
 	clearModes();
-	TA0CCR1 = 30;
-	TA1CCR1 = 30;
+	TA0CCR1 = 50;
+	TA1CCR1 = 50;
 	TA1CCTL1 |= OUTMOD_7; //reset/set
 	TA0CCTL1 |= OUTMOD_7; //reset/set
 	__delay_cycles(400000);
