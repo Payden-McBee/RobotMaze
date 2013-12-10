@@ -19,13 +19,12 @@ void main(void) {
     	    {
     		 turnSmallLeft();
     		 wayIsClear=FALSE;
-    	    }
-    	 if(isLeftSensorCloseToWall())
+    	    } else if(isLeftSensorCloseToWall())
     	    {
     		 turnSmallRight();
     		 wayIsClear=FALSE;
     	    }
-    	if(wayIsClear)
+    	    else if(wayIsClear)
     	{
     		moveForward();
     	}
