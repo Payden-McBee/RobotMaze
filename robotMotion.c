@@ -67,7 +67,7 @@ void turnSmallRight()
 	TA0CCTL0 |= OUTMOD_7;		 // set TACCTL0 to Reset/Set
 
 	TA1CCTL1 |= OUTMOD_7; //reset/set
-	__delay_cycles(200000);
+	__delay_cycles(1000);
 	clearModes();
 }
 
@@ -89,7 +89,7 @@ void turnSmallLeft()
 	TA1CCTL0 |= OUTMOD_5;		 // set TACCTL0 to Reset
 
 	TA0CCTL1 |= OUTMOD_7;
-	__delay_cycles(200000);
+	__delay_cycles(1000);
 	clearModes();
 }
 
@@ -109,7 +109,7 @@ void moveForward()
 	clearModes();
 	TA1CCTL1 |= OUTMOD_7; //reset/set
 	TA0CCTL1 |= OUTMOD_7; //reset/set
-	__delay_cycles(400000);
+	__delay_cycles(1000);
 	clearModes();
 }
 

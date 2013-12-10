@@ -23,8 +23,9 @@ void initLEDs()
 
 unsigned int getLeftSensorReading()
 {
-	 ADC10CTL1 &= ~(INCH_0|INCH_1|INCH_2|INCH_3);
+
 	  ADC10CTL0 &= ~ENC; 						//clearing core, stop the sample and conversion sequence
+	  ADC10CTL1 &= ~(INCH_0|INCH_1|INCH_2|INCH_3);
 	  ADC10CTL1 |= INCH_4;                       // input A4
 	  ADC10AE0 |= BIT4;                         // PA.1 ADC option select
 	  ADC10CTL0 |= ENC + ADC10SC;            	// Sampling and conversion start, do this for each sensor
@@ -34,8 +35,9 @@ unsigned int getLeftSensorReading()
 
 unsigned int getRightSensorReading()
 {
-	  ADC10CTL1 &= ~(INCH_0|INCH_1|INCH_2|INCH_3);
+
 	  ADC10CTL0 &= ~ENC; 						//clearing core, stop the sample and conversion sequence
+	  ADC10CTL1 &= ~(INCH_0|INCH_1|INCH_2|INCH_3);
 	  ADC10CTL1 |= INCH_5;                       // input A5
 	  ADC10AE0 |= BIT5;                         // PA.1 ADC option select
 	  ADC10CTL0 |= ENC + ADC10SC;            	// Sampling and conversion start, do this for each sensor
@@ -45,12 +47,12 @@ unsigned int getRightSensorReading()
 
 unsigned char isLeftSensorCloseToWall()
 {
-	return (getLeftSensorReading() < 0x4FF);
+	return (getLeftSensorReading() > 0x1A0);
 }
 
 unsigned char isRightSensorCloseToWall()
 {
-	return (getRightSensorReading() < 0x4FF);
+	return (getRightSensorReading() > 0x1A0);
 }
 
 // ADC10 interrupt service routine
