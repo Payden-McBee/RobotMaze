@@ -85,8 +85,8 @@ void turnBigRight()
 void turnSmallLeft()
 {
 	clearModes();
-	TA1CCTL1 |= OUTMOD_4;        // set TACCTL1 to Reset / Set mode
-	TA1CCTL0 |= OUTMOD_5;		 // set TACCTL0 to Reset
+	TA1CCTL1 |= OUTMOD_5;//TA1CCTL1 |= OUTMOD_4;        // set TACCTL1 to Reset / Set mode
+	TA1CCTL0 |= OUTMOD_7;//TA1CCTL0 |= OUTMOD_5;		 // set TACCTL0 to Reset
 
 	TA0CCTL1 |= OUTMOD_7;
 	__delay_cycles(1000);
@@ -109,10 +109,27 @@ void moveForward()
 	clearModes();
 	TA1CCTL1 |= OUTMOD_7; //reset/set
 	TA0CCTL1 |= OUTMOD_7; //reset/set
-	__delay_cycles(1000);
+	__delay_cycles(7000);
+
+	/*clearModes();
+	TA0CCTL1 |= OUTMOD_5;        // set TACCTL1 to Reset mode
+	TA0CCTL0 |= OUTMOD_7;		 // set TACCTL0 to Reset/Set
+
+	TA1CCTL1 |= OUTMOD_7; //reset/set
+	__delay_cycles(500);
+	clearModes();*/
+
 	clearModes();
 }
 
+void moveSmallForward()
+{
+	clearModes();
+	TA1CCTL1 |= OUTMOD_7; //reset/set
+	TA0CCTL1 |= OUTMOD_7; //reset/set
+	__delay_cycles(1000);
+	clearModes();
+}
 void moveBackward()
 {
 	clearModes();

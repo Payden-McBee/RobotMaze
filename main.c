@@ -15,7 +15,7 @@ void main(void) {
 
     while(1)
     {
-    	if(isRightSensorCloseToWall())
+    	/*if(isRightSensorCloseToWall())
     	    {
     		 turnSmallLeft();
     		 wayIsClear=FALSE;
@@ -24,12 +24,25 @@ void main(void) {
     		 turnSmallRight();
     		 wayIsClear=FALSE;
     	    }
+    	   //else if(isCenterSensorCloseToWall())
+    	    //{turnSmallRight();wayIsClear=FALSE;}
     	    else if(wayIsClear)
     	{
     		moveForward();
     	}
     	wayIsClear=TRUE;
     	clearModes();
+    	__delay_cycles(1000);*/
+    	if(isLeftSensorTooFarFromWall())
+    	{
+    		turnSmallLeft();
+    		moveSmallForward();
+    	}
+    	else if(isLeftSensorTooCloseToWall())
+    	{
+    		turnSmallRight();
+    	}
+    	else moveForward();
     }
 
 }
