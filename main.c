@@ -9,14 +9,13 @@ void main(void) {
     WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
 
     unsigned char wayIsClear=TRUE;
-
     enableADC10Subsystem();
     initTimerOutputSignals();
     configureA0andA1Timers();
 
     while(1)
     {
-    	 if(isRightSensorCloseToWall())
+    	if(isRightSensorCloseToWall())
     	    {
     		 turnSmallLeft();
     		 wayIsClear=FALSE;
@@ -31,6 +30,7 @@ void main(void) {
     		moveForward();
     	}
     	wayIsClear=TRUE;
+    	clearModes();
     }
 
 }

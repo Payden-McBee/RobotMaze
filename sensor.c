@@ -43,12 +43,12 @@ unsigned int getRightSensorReading()
 
 unsigned char isLeftSensorCloseToWall()
 {
-	return (getLeftSensorReading() < 0x2FF);
+	return (getLeftSensorReading() < 0x3FF);
 }
 
 unsigned char isRightSensorCloseToWall()
 {
-	return (getRightSensorReading() < 0x2FF);
+	return (getRightSensorReading() < 0x3FF);
 }
 
 // ADC10 interrupt service routine

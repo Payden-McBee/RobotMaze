@@ -20,6 +20,5 @@ void turnSmallLeft();
 void turnBigLeft();
 void moveForward();
 void moveBackward();
-void turnAround();
 
 #endif /* ROBOTMOTION_H_ */
