@@ -10,7 +10,7 @@
 void enableADC10Subsystem()
 {
 	  //enable ADC10 subsystem
-	  ADC10CTL0 = ADC10SHT_3 + ADC10ON + ADC10IE; // ADC10ON, interrupt enabled
+	  ADC10CTL0 |= ADC10SHT_3 + ADC10ON + ADC10IE; // ADC10ON, interrupt enabled
 	  ADC10CTL1 |= ADC10SSEL1|ADC10SSEL0;                // Select SMCLK
 }
 
@@ -23,8 +23,9 @@ void initLEDs()
 
 unsigned int getLeftSensorReading()
 {
+	 ADC10CTL1 &= ~(INCH_0|INCH_1|INCH_2|INCH_3);
 	  ADC10CTL0 &= ~ENC; 						//clearing core, stop the sample and conversion sequence
-	  ADC10CTL1 = INCH_4;                       // input A4
+	  ADC10CTL1 |= INCH_4;                       // input A4
 	  ADC10AE0 |= BIT4;                         // PA.1 ADC option select
 	  ADC10CTL0 |= ENC + ADC10SC;            	// Sampling and conversion start, do this for each sensor
 	  __bis_SR_register(CPUOFF + GIE);          // LPM0, ADC10_ISR will force exit
@@ -33,8 +34,9 @@ unsigned int getLeftSensorReading()
 
 unsigned int getRightSensorReading()
 {
+	  ADC10CTL1 &= ~(INCH_0|INCH_1|INCH_2|INCH_3);
 	  ADC10CTL0 &= ~ENC; 						//clearing core, stop the sample and conversion sequence
-	  ADC10CTL1 = INCH_5;                       // input A5
+	  ADC10CTL1 |= INCH_5;                       // input A5
 	  ADC10AE0 |= BIT5;                         // PA.1 ADC option select
 	  ADC10CTL0 |= ENC + ADC10SC;            	// Sampling and conversion start, do this for each sensor
 	  __bis_SR_register(CPUOFF + GIE);          // LPM0, ADC10_ISR will force exit
@@ -43,12 +45,12 @@ unsigned int getRightSensorReading()
 
 unsigned char isLeftSensorCloseToWall()
 {
-	return (getLeftSensorReading() < 0x3FF);
+	return (getLeftSensorReading() < 0x4FF);
 }
 
 unsigned char isRightSensorCloseToWall()
 {
-	return (getRightSensorReading() < 0x3FF);
+	return (getRightSensorReading() < 0x4FF);
 }
 
 // ADC10 interrupt service routine
